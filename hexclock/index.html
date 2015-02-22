@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<title>Hex clock</title>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="msapplication-TileColor" content="#000000">
+<link rel="stylesheet" href="clock.css">
+</head>
+<body>
+<div class="background">
+<div class="absolute-center">
+<p id="hex"></p>
+</div>
+<p id="what"><a id="question" href="#" onclick="$('#explanation').fadeIn();">What is this?</a><span id="explanation" style="display: none;"> A precise <a href="http://en.wikipedia.org/wiki/Web_colors#Hex_triplet" target="_blank">hexadecimal color</a> clock. It goes the whole 24 hours color range, from #000000 to #235959.</span></p>
+</div>
+</body>
+<!-- JS control for the clock -->
+<script>
+function refreshData()
+{
+    x = 1;  // x = seconds
+ 	var d = new Date()
+ 	var h = d.getHours();
+ 	var m = d.getMinutes();
+ 	var s = d.getSeconds();
+ 	
+ 	if (h<=9) {h = '0'+h};
+ 	if (m<=9) {m = '0'+m};
+	if (s<=9) {s = '0'+s};
+	
+ 	var	color = '#'+h+m+s;
+ 	
+    $("div.background").css("background-color", color );
+    $("p#hex").text(color);
+     
+    setTimeout(refreshData, x*1000);
+}
+  
+refreshData(); // execute function
+</script>
+</html>
+<!-- Localized -->
